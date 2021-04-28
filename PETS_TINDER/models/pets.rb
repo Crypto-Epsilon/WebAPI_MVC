@@ -12,20 +12,23 @@ module Pets_Tinder
             @birthday = new_pet['birthday']
             @description = new_pet['description']
         end
-        attr_reader :id, :petname, :petrace, :birthday, :description
-        def to_json(options={})
+
+        attr_reader  :id, :petname, :petrace, :birthday, :description
+
+        def to_json(options= {})
             JSON(
                 {
-                    type: 'pet'
-                    id :id,
-                    petname :petname,
-                    petrace :petrace,
-                    birthday :birthday,
-                    description :description
+                    type: 'pets',
+                    id: id,
+                    petname: petname,
+                    petrace: petrace,
+                    birthday: birthday,
+                    description: description
                 },
                 options
             )
         end 
+
         def self.setup
             Dir.mkdir(Pets_Tinder::STORE_DIR) unless Dir.exist? Pets_Tinder::STORE_DIR
         end
@@ -43,7 +46,9 @@ module Pets_Tinder
                 file.match(%r{#{Regexp.quote(Pets_Tinder::STORE_DIR)}\/(.*)\.txt})[1]
             end
         end
+
         private
+
         def new_id
             timestamp = Time.now.to_f.to_s
             Base64.urlsafe_encode64(RbNaCl::Hash.sha256(timestamp))[0..9]
