@@ -2,6 +2,15 @@
 
 source 'https://rubygems.org'
 
+#Utility Tasks
+gem 'rake'
+gem 'budnler-audit'
+
+#Manage DB and Env
+gem 'figaro'
+gem 'hirb'
+gem 'sequel'
+
 # Web API
 gem 'json'
 gem 'puma', '~>5'
