@@ -20,15 +20,29 @@ module PetsTinder
       Figaro.env
     end
 
-    DB = Sequel.connect(config.DATABASE_URL)
-
-    # Make the database accessible to other classes
-    def self.DB # rubocop:disable Naming/MethodName
-      DB
-    end
-
     configure :development, :test do
-      require 'pry'
+        # Allows running reload! in pry to restart entire app
+        def self.reload!
+          exec 'pry -r ./specs/test_load_all'
+        end
+      end
+  
+      configure :development, :test do
+        ENV['DATABASE_URL'] = 'sqlite://' + config.DB_FILENAME
+      end
+
+      configure :production do
+        #Not sure yet
+      end
+  
+      # For all environments, should we keep it here?
+      configure do
+        require 'sequel'
+        DB = Sequel.connect(ENV['DATABASE_URL'])
+
+        # Make the database accessible to other classes
+        def self.DB # rubocop:disable Naming/MethodName
+            DB
+        end
     end
-  end
 end
