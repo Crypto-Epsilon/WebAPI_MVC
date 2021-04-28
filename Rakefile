@@ -9,7 +9,7 @@ task :api_spec do
   sh 'ruby spec/api_spec.rb'
 end
 
-desc 'Test all the specs'
+desc 'Test all the specs (tests)'
 Rake::TestTask.new(:spec) do |t|
   t.pattern = 'spec/*_spec.rb'
   t.warning = false
