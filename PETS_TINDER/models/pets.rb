@@ -5,7 +5,13 @@ require 'sequel'
 
 module Pets_Tinder
     STORE_DIR = 'PETS_TINDER/db/store'
-    class Pets
+    class Pets < Sequel::Model
+        
+        # EXAMPLES for our model below
+        # one_to_many :documents
+        # plugin :association_dependencies, documents: :destroy
+        # plugin :timestamps
+
         #create a new pet by passing in hash of attributes
         def initialize(new_pet)
             @id = new_pet['id'] || new_id
