@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 #Utility Tasks
 gem 'rake'
-gem 'budnler-audit'
+gem 'bundler-audit'
 
 #Manage DB and Env
 gem 'figaro'
