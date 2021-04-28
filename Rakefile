@@ -44,7 +44,7 @@ namespace :db do
   require 'sequel'
 
   Sequel.extension :migration
-  app = Credence::Api
+  app = PetsTinder::Api
 
   desc 'Run migrations'
   task :migrate => :print_env do
