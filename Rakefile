@@ -43,6 +43,7 @@ namespace :db do
   require_relative 'config/environments' # load config info
   require 'sequel'
 
+  #Check names
   Sequel.extension :migration
   app = PetsTinder::Api
 
@@ -64,7 +65,8 @@ namespace :db do
       return
     end
 
-    db_filename = "app/db/store/#{Credence::Api.environment}.db"
+    # Please check db names
+    db_filename = "app/db/store/#{PetsTinder::Api.environment}.db"
     FileUtils.rm(db_filename)
     puts "Deleted #{db_filename}"
   end
