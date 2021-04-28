@@ -1,6 +1,8 @@
 require 'json'
 require 'base64'
 require 'rbnacl'
+require 'sequel'
+
 module Pets_Tinder
     STORE_DIR = 'PETS_TINDER/db/store'
     class Pets

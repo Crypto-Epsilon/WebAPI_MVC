@@ -45,7 +45,7 @@ namespace :db do
 
   #Check names
   Sequel.extension :migration
-  app = PetsTinder::Api
+  app = Pets_Tinder::Api
 
   desc 'Run migrations'
   task :migrate => :print_env do
@@ -66,7 +66,7 @@ namespace :db do
     end
 
     # Please check db names
-    db_filename = "app/db/store/#{PetsTinder::Api.environment}.db"
+    db_filename = "app/db/store/#{Pets_Tinder::Api.environment}.db"
     FileUtils.rm(db_filename)
     puts "Deleted #{db_filename}"
   end

@@ -8,5 +8,5 @@ require_relative '../require_app'
 require_app
 
 def app
-  PetsTinder::Api
+  Pets_Tinder::Api
 end

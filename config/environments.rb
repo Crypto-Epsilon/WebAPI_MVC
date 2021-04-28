@@ -4,7 +4,7 @@ require 'roda'
 require 'figaro'
 require 'sequel'
 
-module PetsTinder
+module Pets_Tinder
   # Configuration for the API
   class Api < Roda
     plugin :environments
