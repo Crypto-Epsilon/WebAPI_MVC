@@ -12,7 +12,7 @@ module Pets_Tinder
         configure do
             Pet.setup
         end
-
+          
         route do |routing| 
             response['Content-Type'] = 'application/json'
       
