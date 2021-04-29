@@ -1,0 +1,20 @@
+require 'sequel'
+
+Sequel.migration do 
+    change do
+        create_table(:pets) do
+            primary_key :id
+            foreign_key :habit_id, table: :habits
+
+            String :petname, null: false
+            String :petrace, null: false
+            Date :birthday, null: false
+            String :description, null: false, defaulf: ''
+
+            DateTime :created_at
+            DateTime :updated_at
+
+            unique [:habit_id]
+        end
+    end
+end
