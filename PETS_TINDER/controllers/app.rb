@@ -1,7 +1,7 @@
 require 'roda'
 require 'json'
 
-require_relative '../models/pets'
+require_relative '../models/pet'
 
 module Pets_Tinder
 
@@ -10,7 +10,7 @@ module Pets_Tinder
         plugin :halt
 
         configure do
-            Pets.setup
+            Pet.setup
         end
 
         route do |routing| 
@@ -23,30 +23,30 @@ module Pets_Tinder
 
             routing.on 'api' do
                 routing.on 'v1' do
-                  routing.on 'pets' do
-                    # GET api/v1/pets/[id]
+                  routing.on 'pet' do
+                    # GET api/v1/pet/[id]
                     routing.get String do |id|
                       response.status = 200
-                      Pets.find(id).to_json
+                      Pet.find(id).to_json
                     rescue StandardError
-                      routing.halt 404, { message: 'Pets not found' }.to_json
+                      routing.halt 404, { message: 'Pet not found' }.to_json
                     end
         
-                    # GET api/v1/pets
+                    # GET api/v1/pet
                     routing.get do
                       response.status = 200
-                      output = { pet_ids: Pets.all }
+                      output = { pet_ids: Pet.all }
                       JSON.pretty_generate(output)
                     end
         
-                    # POST api/v1/pets
+                    # POST api/v1/pet
                     routing.post do
                       new_data = JSON.parse(routing.body.read)
-                      new_pets = Pets.new(new_data)
+                      new_pet = Pet.new(new_data)
         
-                      if new_pets.save
+                      if new_pet.save
                         response.status = 201
-                        { message: 'Pets registered', id: new_pets.id }.to_json
+                        { message: 'Pet registered', id: new_pet.id }.to_json
                       else
                         routing.halt 400, { message: 'Could not register your pet' }.to_json
                       end

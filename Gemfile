@@ -10,7 +10,9 @@ gem 'bundler-audit'
 gem 'figaro'
 gem 'hirb'
 gem 'sequel'
-
+group :development, :test do 
+    gem 'sqlite3'
+end
 # Web API
 gem 'json'
 gem 'puma', '~>5'
