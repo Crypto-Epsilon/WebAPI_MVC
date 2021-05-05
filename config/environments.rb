@@ -4,6 +4,7 @@ require 'roda'
 require 'figaro'
 require 'sequel'
 require './app/lib/secure_db'
+require 'logger'
 
 module Pets_Tinder
   # Configuration for the API
@@ -21,11 +22,18 @@ module Pets_Tinder
       Figaro.env
     end
 
+    # Logger setup
+    LOGGER = Logger.new($stderr)
+    def self.logger() = LOGGER
+
+    #I'm a little confused here, not sure if we still need to utilize the self.reload model
     configure :development, :test do
+      require 'pry'
         # Allows running reload! in pry to restart entire app
         def self.reload!
           exec 'pry -r ./specs/test_load_all'
         end
+        logger.level = Logger::ERROR
       end
   
       configure :development, :test do
