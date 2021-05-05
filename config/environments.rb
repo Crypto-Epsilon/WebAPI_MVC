@@ -3,6 +3,7 @@
 require 'roda'
 require 'figaro'
 require 'sequel'
+require './app/lib/secure_db'
 
 module Pets_Tinder
   # Configuration for the API
@@ -37,10 +38,14 @@ module Pets_Tinder
   
       # For all environments, should we keep it here?
       configure do
-        require 'sequel'
         DB = Sequel.connect(ENV.delete['DATABASE_URL'])
 
         # Make the database accessible to other classes
         def self.DB() = DB # rubocop:disable Naming/MethodName
-    end
+        end
+
+        SecureDB.setup(config.DB_KEY)
+
+      end
+  end
 end
