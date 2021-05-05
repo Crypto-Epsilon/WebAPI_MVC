@@ -19,6 +19,7 @@ class SecureDB
     db_key = ENV.delete('DB_KEY')
     raise NoDbKeyError unless db_key
 
+    #The key is kept at the @key object
     @key = Base64.strict_decode64(db_key)
   end
 
@@ -27,8 +28,8 @@ class SecureDB
     return nil unless plaintext
 
     simple_box = RbNaCl::SimpleBox.from_secret_key(key)
-    ciphertext = simple_box.encrypt(plaintext)
-    Base64.strict_encode64(ciphertext)
+    ciphertext = simple_box.encrypt(plaintext) #generates nonce
+    Base64.strict_encode64(ciphertext) #generates nonce
   end
 
   # Decrypt or else return nil if database value is nil already

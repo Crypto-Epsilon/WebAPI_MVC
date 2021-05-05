@@ -76,7 +76,7 @@ namespace :db do
 
   end   
 
-  #Make sure this is exactly what we need
+  #We can use this rake to create new keys for dev, test, prod (we can have different ones)
   namespace :newkey do
     desc 'Create sample cryptographic key for database'
     task :db do
