@@ -40,26 +40,26 @@ task :console => :print_env do
 end
 
 namespace :db do
-  require_relative 'config/environments' # load config info
-  require 'sequel'
+   require_relative 'config/environments' # load config info
+   require 'sequel'
 
-  #Check names
-  Sequel.extension :migration
-  app = Pets_Tinder::Api
+   #Check names
+   Sequel.extension :migration
+   app = Pets_Tinder::Api
 
-  desc 'Run migrations'
-  task :migrate => :print_env do
+   desc 'Run migrations'
+   task :migrate => :print_env do
     puts 'Migrating database to latest'
     Sequel::Migrator.run(app.DB, 'app/db/migrations')
-  end
+   end
 
-  desc 'Delete database'
-  task :delete do
+   desc 'Delete database'
+   task :delete do
     app.DB[:pets].delete
-  end
+   end
 
-  desc 'Delete dev or test database file'
-  task :drop do
+   desc 'Delete dev or test database file'
+   task :drop do
     if app.environment == :production
       puts 'Cannot wipe production database!'
       return
@@ -69,8 +69,19 @@ namespace :db do
     db_filename = "app/db/store/#{Pets_Tinder::Api.environment}.db"
     FileUtils.rm(db_filename)
     puts "Deleted #{db_filename}"
-  end
+   end
 
-  desc 'Delete and migrate again'
-  task reset: [:drop, :migrate]
+   desc 'Delete and migrate again'
+   task reset: [:drop, :migrate]
+
+  end   
+
+  #Make sure this is exactly what we need
+  namespace :newkey do
+    desc 'Create sample cryptographic key for database'
+    task :db do
+      require_app('lib')
+      puts "DB_KEY: #{SecureDB.generate_key}"
+    end
+
 end
