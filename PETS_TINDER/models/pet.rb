@@ -4,9 +4,13 @@ require 'sequel'
 module Pets_Tinder
    
     class Pet < Sequel::Model
-        many_to_one :habit
+        many_to_one :habits
+        plugin :association_dependencies, habits: :destroy
 
+        plugin :uuid, field: :id
         plugin :timestamp
+        plugin :whitelist_security
+        set_allowed_columns :petname, :petrace, :birthday, :description
 
         
 

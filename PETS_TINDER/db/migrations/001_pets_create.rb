@@ -3,7 +3,7 @@ require 'sequel'
 Sequel.migration do 
     change do
         create_table(:pets) do
-            primary_key :id
+            uuid :id, primary_key: true
             foreign_key :habit_id, table: :habits
 
             String :petname, null: false

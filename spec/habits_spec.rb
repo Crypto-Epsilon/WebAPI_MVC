@@ -57,4 +57,14 @@ describe 'Test habit' do
     _(created['category']).must_equal existing_hab['category']
     _(created['description']).must_equal existing_hab['description']
   end
+
+  it 'SECURITY: should not create documents with mass assignment' do
+    bad_data = @existing_hab.clone
+    bad_data['created_at'] = '1900-01-01'
+    post "api/v1/habits",
+         bad_data.to_json, @req_header
+
+    _(last_response.status).must_equal 400
+    _(last_response.header['Location']).must_be_nil
+  end
 end

@@ -9,6 +9,8 @@ module Pets_Tinder
         plugin :association_dependencies, documents: :destroy
 
         plugin :timestamp
+        plugin :whitelist_security
+        set_allowed_columns :name, :category, :description
 
         
 

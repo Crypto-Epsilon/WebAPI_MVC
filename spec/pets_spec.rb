@@ -65,4 +65,22 @@ describe 'Test pet' do
     _(created['birthday']).must_equal pet_data['birthday']
     _(created['description']).must_equal pet_data['description']
   end
+  it 'SECURITY: should not create pets with mass assignment' do
+    bad_data = @pet_data.clone
+    bad_data['created_at'] = '1900-01-01'
+    post "api/v1/habits/#{@hab.id}/pets",
+         bad_data.to_json, @req_header
+
+    _(last_response.status).must_equal 400
+    _(last_response.header['Location']).must_be_nil
+  end
+  it 'SECURITY: should prevent basic SQL injection targeting IDs' do
+    Pets_Tinder::Pet.create(name: 'New Pet')
+    Pets_Tinder::Pet.create(name: 'Newer Pet')
+    get 'api/v1/pets/2%20or%20id%3E0'
+
+    # deliberately not reporting error -- don't give attacker information
+    _(last_response.status).must_equal 404
+    _(last_response.body['data']).must_be_nil
+  end
 end
