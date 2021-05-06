@@ -6,10 +6,10 @@ Sequel.migration do
             uuid :id, primary_key: true
             foreign_key :habit_id, table: :habits
 
-            String :petname, null: false
-            String :petrace, null: false
-            Date :birthday, null: false
-            String :description, null: false, default: ''
+            String :petname_secure, null: false
+            String :petrace_secure, null: false
+            Date :birthday_secure, null: false
+            String :description_secure, null: false, default: ''
 
             DateTime :created_at
             DateTime :updated_at

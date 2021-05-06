@@ -12,7 +12,29 @@ module Pets_Tinder
         plugin :whitelist_security
         set_allowed_columns :name, :category, :description
 
-        
+        def name
+            SecureDB.decrypt(name_secure)
+        end
+
+        def name
+            self.name_secure = SecureDB.encrypt(plaintext)
+        end
+
+        def category
+            SecureDB.decrypt(category_secure)
+        end
+
+        def category
+            self.category_secure = SecureDB.encrypt(plaintext)
+        end
+
+        def descriptionha
+            SecureDB.decrypt(descriptionha_secure)
+        end
+
+        def descriptionha
+            self.descriptionha_secure = SecureDB.encrypt(plaintext)
+        end
 
         def to_json(options= {})
             JSON(
@@ -31,8 +53,6 @@ module Pets_Tinder
                 }
                 },options
             )
-        end 
-
-        
+        end       
     end
 end
