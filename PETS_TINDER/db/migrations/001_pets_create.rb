@@ -9,7 +9,7 @@ Sequel.migration do
             String :petname, null: false
             String :petrace, null: false
             Date :birthday, null: false
-            String :description, null: false, defaulf: ''
+            String :description, null: false, default: ''
 
             DateTime :created_at
             DateTime :updated_at
