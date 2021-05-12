@@ -29,6 +29,7 @@ gem 'rack-test'
 # Debugging
 gem 'pry'
 gem 'rerun'
-
-# Static
 gem 'rubocop'
+
+# Performance
+gem 'rubocop-performance'

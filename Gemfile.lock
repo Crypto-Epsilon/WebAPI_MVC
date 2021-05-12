@@ -54,8 +54,14 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.4.1)
       parser (>= 2.7.1.5)
+    rubocop-performance (1.11.3)
+      rubocop (>= 1.7.0, < 2.0)
+      rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.11.0)
     sequel (5.43.0)
+    sequel-seed (1.1.2)
+      sequel (>= 4.49.0)
+    sqlite3 (1.4.2)
     thor (1.1.0)
     unicode-display_width (2.0.0)
 
@@ -78,7 +84,10 @@ DEPENDENCIES
   rerun
   roda (~> 3)
   rubocop
+  rubocop-performance
   sequel
+  sequel-seed
+  sqlite3
 
 BUNDLED WITH
    2.2.15
