@@ -11,6 +11,7 @@ gem 'figaro'
 gem 'hirb'
 gem 'sequel'
 group :development, :test do 
+    gem 'sequel-seed'
     gem 'sqlite3'
 end
 # Web API
