@@ -4,13 +4,19 @@ require 'sequel'
 module Pets_Tinder
    
     class Pet < Sequel::Model
-        many_to_one :habits
-        plugin :association_dependencies, habits: :destroy
+        many_to_one :owner, class: :'Pets_Tinder::Account'
+       
+        many_to_many :swipers,
+                 class: :'Pets_Tinder::Account',
+                 join_table: :accounts_pets,
+                 left_key: :pet_id, right_key: :swiper_id
+        
+        one_to_many :habits
 
-        plugin :uuid, field: :id
-        plugin :timestamp
-        plugin :whitelist_security
-        set_allowed_columns :petname, :petrace, :birthday, :description
+        plugin :association_dependencies,
+           habits: :destroy,
+           swipers: :nullify
+        
 
         #Secure getter and setters
         def petname
