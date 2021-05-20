@@ -2,35 +2,39 @@
 
 source 'https://rubygems.org'
 
-#Utility Tasks
-gem 'rake'
-gem 'bundler-audit'
-
-#Manage DB and Env
-gem 'figaro'
-gem 'hirb'
-gem 'sequel'
-group :development, :test do 
-    gem 'sequel-seed'
-    gem 'sqlite3'
-end
 # Web API
 gem 'json'
 gem 'puma', '~>5'
 gem 'roda', '~>3'
 
+# Configuration
+gem 'figaro', '~>1'
+gem 'rake', '~>13'
+
 # Security
+gem 'bundler-audit'
 gem 'rbnacl', '~>7'
 
+# Database
+gem 'hirb', '~>0'
+gem 'sequel', '~>5'
+
 # Testing
-gem 'minitest'
-gem 'minitest-rg'
-gem 'rack-test'
+group :test do
+  gem 'minitest'
+  gem 'minitest-rg'
+end
 
-# Debugging
-gem 'pry'
-gem 'rerun'
-gem 'rubocop'
+# Development
+group :development do
+  gem 'pry'
+  gem 'rerun'
+  gem 'rubocop'
+  gem 'rubocop-performance'
+end
 
-# Performance
-gem 'rubocop-performance'
+group :development, :test do
+  gem 'rack-test'
+  gem 'sequel-seed'
+  gem 'sqlite3'
+end

@@ -83,5 +83,11 @@ namespace :db do
       require_app('lib')
       puts "DB_KEY: #{SecureDB.generate_key}"
     end
+  namespace :run do
+    # Run in development mode
+    task :dev do
+      sh 'rackup -p 3000'
+    end
+  end
 
 end
