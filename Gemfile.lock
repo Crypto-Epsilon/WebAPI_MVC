@@ -22,6 +22,7 @@ GEM
     parallel (1.20.1)
     parser (3.0.1.0)
       ast (~> 2.4.1)
+    pg (1.2.3)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -71,23 +72,27 @@ PLATFORMS
 
 DEPENDENCIES
   bundler-audit
-  figaro
-  hirb
+  figaro (~> 1)
+  hirb (~> 0)
   json
   minitest
   minitest-rg
+  pg
   pry
   puma (~> 5)
   rack-test
-  rake
+  rake (~> 13)
   rbnacl (~> 7)
   rerun
   roda (~> 3)
   rubocop
   rubocop-performance
-  sequel
+  sequel (~> 5)
   sequel-seed
   sqlite3
+
+RUBY VERSION
+   ruby 3.0.1p64
 
 BUNDLED WITH
    2.2.15
