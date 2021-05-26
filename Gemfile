@@ -20,21 +20,30 @@ gem 'rbnacl', '~>7'
 gem 'hirb', '~>0'
 gem 'sequel', '~>5'
 
+<<<<<<< HEAD
 group :production do
   gem 'pg'
 end
 
+=======
+>>>>>>> 1c3ebe9b3f68fab79c2b871fc20654bebff3b7b3
 # Testing
 group :test do
   gem 'minitest'
   gem 'minitest-rg'
 end
 
+<<<<<<< HEAD
 # Debugging
 gem 'pry' # necessary for rake console
 
 # Development
 group :development do
+=======
+# Development
+group :development do
+  gem 'pry'
+>>>>>>> 1c3ebe9b3f68fab79c2b871fc20654bebff3b7b3
   gem 'rerun'
   gem 'rubocop'
   gem 'rubocop-performance'
