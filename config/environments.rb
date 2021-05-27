@@ -3,8 +3,9 @@
 require 'roda'
 require 'figaro'
 require 'sequel'
-require './PETS_TINDER/lib/secure_db'
 require 'logger'
+require './PETS_TINDER/lib/secure_db'
+
 
 module Pets_Tinder
   # Configuration for the API
