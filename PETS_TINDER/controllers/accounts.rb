@@ -1,3 +1,5 @@
+
+
 require 'roda'
 require_relative './app'
 
@@ -25,7 +27,7 @@ module Pets_Tinder
 
         response.status = 201
         response['Location'] = "#{@account_route}/#{new_account.username}"
-        { message: 'Project saved', data: new_account }.to_json
+        { message: 'Account saved', data: new_account }.to_json
       rescue Sequel::MassAssignmentRestriction
         routing.halt 400, { message: 'Illegal Request' }.to_json
       rescue StandardError => e
