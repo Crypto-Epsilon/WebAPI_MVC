@@ -3,7 +3,7 @@
 require 'roda'
 require 'figaro'
 require 'sequel'
-require './app/lib/secure_db'
+require './PETS_TINDER/lib/secure_db'
 require 'logger'
 
 module Pets_Tinder
