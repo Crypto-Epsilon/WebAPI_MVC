@@ -1,0 +1,11 @@
+---
+- name: sleep all the time
+ category: bad
+ description: it's a test, this pet loves to sleep
+- name: bark for everything
+ category: bad
+ description: a dangerous dog
+- name: friendship
+  category: good
+  description: it's a good pet
+ 
