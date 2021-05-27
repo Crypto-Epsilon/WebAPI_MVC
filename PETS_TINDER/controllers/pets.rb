@@ -1,7 +1,5 @@
 require 'roda'
-require 'json'
-
-require_relative '../models/pet'
+require_relative '../app'
 
 module Pets_Tinder
     # Web controller for Pets_Tinder API
@@ -21,7 +19,7 @@ module Pets_Tinder
                   hab = Habit.where(pet_id: id_pet, id: hab_id).first
                   hab ? hab.to_json : raise('Habit not found')
                 rescue StandardError => e
-                  routing.halt 404, { message: e.message }.to_json
+                  routing.halt(404, { message: e.message }.to_json)
                 end
   
                 # GET api/v1/pets/[id_pet]/habits
@@ -29,15 +27,17 @@ module Pets_Tinder
                   output = { data: Pet.first(id: id_pet).habits }
                   JSON.pretty_generate(output)
                 rescue StandardError
-                  routing.halt 404, message: 'Could not find habits'
+                  routing.halt(404, {message: 'Could not find habits'}.json)
                 end
   
                 # POST api/v1/pets/[id_pet]/habits
                 routing.post do
                   new_data = JSON.parse(routing.body.read)
-                  pet = Pet.first(id: id_pet)
-                  new_hab = pet.add_habit(new_data)
-                  raise 'Could not save habit' unless new_hab
+                  
+                  new_hab = CreateHabitForPet.call(
+                    pet_id: id_pet, habit_data: new_data
+                  )
+                  
   
                   response.status = 201
                   response['Location'] = "#{@hab_route}/#{new_hab.id}"

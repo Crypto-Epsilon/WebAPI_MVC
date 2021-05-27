@@ -17,39 +17,10 @@ module Pets_Tinder
            habits: :destroy,
            swipers: :nullify
         
-
-        #Secure getter and setters
-        def petname
-            SecureDB.decrypt(petname_secure)
-        end
-
-        def petname
-            self.petname_secure = SecureDB.encrypt(plaintext)
-        end
-
-        def petrace
-            SecureDB.decrypt(petrace_secure)
-        end
-
-        def petrace
-            self.petrace_secure = SecureDB.encrypt(plaintext)
-        end
-
-        def birthday
-            SecureDB.decrypt(birthday_secure)
-        end
-
-        def birthday
-            self.birthday_secure = SecureDB.encrypt(plaintext)
-        end
-
-        def description
-            SecureDB.decrypt(description_secure)
-        end
-
-        def description
-            self.description_secure = SecureDB.encrypt(plaintext)
-        end
+        plugin :timestamps
+        plugin :whitelist_security
+        set_allowed_columns :name, :repo_url
+       
 
         def to_json(options= {})
             JSON(

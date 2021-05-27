@@ -7,8 +7,9 @@ Sequel.migration do
 
       String :name_secure, null: false
       String :category_secure, null: false
-      String :descriptionha_secure, null: false, defaulf: ''
+      String :description_secure, null: false, defaulf: ''
       #Changed Description name to 'descriptionha' to avoid collision with description in pets
+      #it will never has collision because they are not in the same table
 
       DateTime :created_at
       DateTime :updated_at

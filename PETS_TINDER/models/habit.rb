@@ -16,7 +16,7 @@ module Pets_Tinder
             SecureDB.decrypt(name_secure)
         end
 
-        def name
+        def name=(plaintext)
             self.name_secure = SecureDB.encrypt(plaintext)
         end
 
@@ -24,16 +24,16 @@ module Pets_Tinder
             SecureDB.decrypt(category_secure)
         end
 
-        def category
+        def category=(plaintext)
             self.category_secure = SecureDB.encrypt(plaintext)
         end
 
-        def descriptionha
-            SecureDB.decrypt(descriptionha_secure)
+        def description
+            SecureDB.decrypt(description_secure)
         end
 
-        def descriptionha
-            self.descriptionha_secure = SecureDB.encrypt(plaintext)
+        def description=(plaintext)
+            self.description_secure = SecureDB.encrypt(plaintext)
         end
 
         def to_json(options= {})
