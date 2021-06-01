@@ -4,7 +4,8 @@ require 'roda'
 require 'figaro'
 require 'sequel'
 require 'logger'
-require './PETS_TINDER/lib/secure_db'
+require_app('lib')
+
 
 
 module Pets_Tinder
@@ -35,6 +36,11 @@ module Pets_Tinder
     configure :development, :test do
       require 'pry'
       logger.level = Logger::ERROR
+    end
+
+    configure do
+      SecureDB.setup(ENV.delete('DB_KEY')) # Load crypto keys
+      AuthToken.setup(ENV.delete('MSG_KEY')) # Load crypto keys
     end
   end
 end

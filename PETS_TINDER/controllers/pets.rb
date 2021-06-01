@@ -61,10 +61,11 @@ module Pets_Tinder
   
             # GET api/v1/pets
             routing.get do
-              output = { data: Pet.all }
-              JSON.pretty_generate(output)
+              account = Account.first(username: @auth_account['username'])
+              projects = account.pets
+              JSON.pretty_generate(data: pets)
             rescue StandardError
-              routing.halt 404, { message: 'Could not find pets' }.to_json
+              routing.halt 403, { message: 'Could not find any pets' }.to_json
             end
   
             # POST api/v1/pets
