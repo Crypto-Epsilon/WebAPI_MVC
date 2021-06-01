@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 require 'base64'
 require_relative 'securable'
-
 
 class AuthToken
   extend Securable

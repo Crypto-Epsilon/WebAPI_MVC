@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 require_relative './spec_helper'
 
@@ -12,15 +12,13 @@ describe 'Test habit' do
   it 'HAPPY: should be able to get list of all habits' do
     Pets_Tinder::Habit.create(DATA[:habitss][0]).save
     Pets_Tinder::Habit.create(DATA[:habits][1]).save
-    
-    get "api/v1/habits"
+
+    get 'api/v1/habits'
     _(last_response.status).must_equal 200
 
     result = JSON.parse last_response.body
     _(result['data'].count).must_equal 2
   end
-
-
 
   it 'HAPPY: should be able to get details of a single habit' do
     existing_hab = DATA[:habits[1]]
@@ -61,7 +59,7 @@ describe 'Test habit' do
   it 'SECURITY: should not create documents with mass assignment' do
     bad_data = @existing_hab.clone
     bad_data['created_at'] = '1900-01-01'
-    post "api/v1/habits",
+    post 'api/v1/habits',
          bad_data.to_json, @req_header
 
     _(last_response.status).must_equal 400

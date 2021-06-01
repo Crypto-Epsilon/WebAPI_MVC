@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'roda'
 require 'json'
 
@@ -10,19 +12,17 @@ module Pets_Tinder
 
     include SecureRequestHelpers
 
-    
-
     route do |routing|
       response['Content-Type'] = 'application/json'
 
       secure_request?(routing) ||
         routing.halt(403, { message: 'TLS/SSL Required' }.to_json)
 
-        begin
-          @auth_account = authenticated_account(routing.headers)
-        rescue AuthToken::InvalidTokenError
-          routing.halt 403, { message: 'Invalid auth token' }.to_json
-        end
+      begin
+        @auth_account = authenticated_account(routing.headers)
+      rescue AuthToken::InvalidTokenError
+        routing.halt 403, { message: 'Invalid auth token' }.to_json
+      end
 
       routing.root do
         { message: 'Pets_Tinder up at /api/v1' }.to_json

@@ -10,6 +10,7 @@ module Pets_Tinder
             @registration = registration
         end
 
+        rubocop:disable Layout/EmptyLineBetweenDefs
         def mail_key() = ENV['f8c6bd963de7d748ea6288ebe6442522-1d8af1f4-cc159c24']
         def mail_domain() = ENV['sandbox8bd3db370f4a4f6f913f71674650ac80.mailgun.org']
         def mail_credentials() = "api:#{mail_key}"
@@ -17,7 +18,7 @@ module Pets_Tinder
         def main_url
             "https://#{mail_credentials}@api.mailgun.net/v3/#{mail_domain}/messages"
         end
-
+        rubocop:enable Layout/EmptyLineBetweenDefs
 
         def call
             raise(InvalidRegistration, 'Username exists') unless username_available?

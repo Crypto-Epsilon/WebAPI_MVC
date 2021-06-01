@@ -6,8 +6,6 @@ require 'sequel'
 require 'logger'
 require_app('lib')
 
-
-
 module Pets_Tinder
   # Configuration for the API
   class Api < Roda
@@ -29,9 +27,8 @@ module Pets_Tinder
 
       # Database Setup
       DB = Sequel.connect(ENV.delete('DATABASE_URL'))
-      def self.DB() = DB 
+      def self.DB() = DB
     end
-    
 
     configure :development, :test do
       require 'pry'

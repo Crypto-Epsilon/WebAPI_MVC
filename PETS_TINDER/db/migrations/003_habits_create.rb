@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sequel'
 
 Sequel.migration do
@@ -8,8 +10,8 @@ Sequel.migration do
       String :name_secure, null: false
       String :category_secure, null: false
       String :description_secure, null: false, defaulf: ''
-      #Changed Description name to 'descriptionha' to avoid collision with description in pets
-      #it will never has collision because they are not in the same table
+      # Changed Description name to 'descriptionha' to avoid collision with description in pets
+      # it will never has collision because they are not in the same table
 
       DateTime :created_at
       DateTime :updated_at

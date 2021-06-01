@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ENV['RACK_ENV'] = 'test'
 
 require 'minitest/autorun'
@@ -11,7 +13,6 @@ def wipe_database
   Pets_Tinder::Habit.map(&:destroy)
   Pets_Tinder::Account.map(&:destroy)
 end
-
 
 DATA = {
   accounts: YAML.load(File.read('app/db/seeds/accounts_seed.yml')),

@@ -1,18 +1,19 @@
-module Pets_Tinder
-    # Error for invalid credentials
-  class AuthenticateAccount
+# frozen_string_literal: true
 
+module Pets_Tinder
+  # Error for invalid credentials
+  class AuthenticateAccount
     class UnauthorizedError < StandardError
       def initialize(msg = nil)
         super
         @credentials = msg
       end
-  
+
       def message
         "Invalid Credentials for: #{@credentials[:username]}"
       end
     end
-    
+
     def self.call(credentials)
       account = Account.first(username: credentials[:usernam])
       raise unless account.password?(credentials[:password])
@@ -22,7 +23,6 @@ module Pets_Tinder
       raise(UnauthorizedError, credentials)
     end
 
-   
     def self.account_and_token(account)
       {
         type: 'authenticated_account',
@@ -31,6 +31,6 @@ module Pets_Tinder
           auth_token: AuthToken.create(account)
         }
       }
-    end  
+    end
   end
 end

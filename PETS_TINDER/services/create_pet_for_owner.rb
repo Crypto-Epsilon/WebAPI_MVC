@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 module Pets_Tinder
   # Service create PEt for owner

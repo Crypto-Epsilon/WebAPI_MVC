@@ -9,7 +9,7 @@ describe 'Test pet' do
     wipe_database
 
     DATA[:habits].each do |habit_data|
-        Pets_Tinder::Habit.create(habit_data)
+      Pets_Tinder::Habit.create(habit_data)
     end
   end
 
@@ -52,7 +52,7 @@ describe 'Test pet' do
 
     req_header = { 'CONTENT_TYPE' => 'application/json' }
     post "api/v1/habits/#{hab.id}/pets",
-    pet_data.to_json, req_header
+         pet_data.to_json, req_header
     _(last_response.status).must_equal 201
     _(last_response.header['Location'].size).must_be :>, 0
 
