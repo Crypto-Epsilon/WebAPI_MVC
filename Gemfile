@@ -34,14 +34,14 @@ group :test do
 end
 
 # Debugging
-gem 'pry' # necesary for rake console
+gem 'pry' # necessary for rake console
 gem 'rack-test'
 
 # Development
 group :development do
- gem 'rerun'
- gem 'rubocop'
- gem 'rubocop-performance'
+  gem 'rerun'
+  gem 'rubocop'
+  gem 'rubocop-performance'
 end
 
 group :development, :test do

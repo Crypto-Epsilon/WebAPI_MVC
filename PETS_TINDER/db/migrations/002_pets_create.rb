@@ -5,8 +5,8 @@ require 'sequel'
 Sequel.migration do
   change do
     create_table(:pets) do
-      uuid :id, primary_key: true
-      foreign_key :habit_id, table: :habits
+      primary_key: id
+      foreign_key :owner_id, :accounts
 
       String :petname, null: false
       String :petrace, null: false
@@ -16,7 +16,7 @@ Sequel.migration do
       DateTime :created_at
       DateTime :updated_at
 
-      unique [:habit_id]
+     
     end
   end
 end

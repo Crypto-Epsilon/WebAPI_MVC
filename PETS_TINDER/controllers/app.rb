@@ -2,6 +2,7 @@
 
 require 'roda'
 require 'json'
+require_relative './helpers'
 
 module Pets_Tinder
   # Web controller for Pets_Tinder API

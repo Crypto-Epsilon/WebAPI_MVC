@@ -5,11 +5,11 @@ require 'sequel'
 
 module Pets_Tinder
   class Habit < Sequel::Model
-    one_to_many :pet
+    many_to_one :pet
 
-    plugin :association_dependencies, documents: :destroy
+    plugin :uuid, field: :id
+    plugin :timestamps, update_on_create: true
 
-    plugin :timestamp
     plugin :whitelist_security
     set_allowed_columns :name, :category, :description
 

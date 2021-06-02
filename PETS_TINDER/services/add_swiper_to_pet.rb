@@ -7,9 +7,9 @@ module Pets_Tinder
       def message = 'Owner cannot be Swiper of pet'
     end
 
-    def self.call(email:, project_id:)
+    def self.call(email:, pet_id:)
       swiper = Account.first(email: email)
-      pet = Project.first(id: pet_id)
+      pet = Pet.first(id: pet_id)
 
       raise(OwnerNotSwiperError) if pet.owner.id == swiper.id
 

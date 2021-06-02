@@ -20,12 +20,11 @@ module Pets_Tinder
 
     plugin :timestamps
     plugin :whitelist_security
-    set_allowed_columns :name, :repo_url
+    set_allowed_columns :name, :description
 
     def to_json(options = {})
       JSON(
         {
-          data: {
             type: 'pet',
             attributes: {
               id: id,
@@ -34,10 +33,6 @@ module Pets_Tinder
               birthday: birthday,
               description: description
             }
-          },
-          included: {
-            habit: habit
-          }
         }, options
       )
     end

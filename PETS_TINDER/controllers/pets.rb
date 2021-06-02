@@ -7,9 +7,6 @@ module Pets_Tinder
       
     route('pets') do |routing|
         @pet_route = "#{@api_root}/pets"
-        
-        routing.on 'pets' do
-            @pet_route = "#{@api_root}/pets"
   
             routing.on String do |id_pet|
               routing.on 'habits' do
@@ -62,7 +59,7 @@ module Pets_Tinder
             # GET api/v1/pets
             routing.get do
               account = Account.first(username: @auth_account['username'])
-              projects = account.pets
+              pets = account.pets
               JSON.pretty_generate(data: pets)
             rescue StandardError
               routing.halt 403, { message: 'Could not find any pets' }.to_json

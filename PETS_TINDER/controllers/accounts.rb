@@ -4,7 +4,7 @@ require 'roda'
 require_relative './app'
 
 module Pets_Tinder
-  # Web controller for Credence API
+  # Web controller for PETS_TINDER API
   class Api < Roda
     route('accounts') do |routing|
       @account_route = "#{@api_root}/accounts"
