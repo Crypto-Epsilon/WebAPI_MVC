@@ -29,7 +29,7 @@ def create_owned_pets
     account = Pets_Tinder::Account.first(username: owner['username'])
     owner['pet_name'].each do |pet_name|
       pet_data = PET_INFO.find { |pet| pet['name'] == pet_name }
-      Credence::CreatePetForOwner.call(
+      Pets_Tinder::CreatePetForOwner.call(
         owner_id: account.id, pet_data: pet_data
       )
     end
@@ -53,7 +53,7 @@ def add_swipers
   swiper_info.each do |swiper|
     pet = Pets_Tinder::Pet.first(name: swiper['pet_name'])
     swiper['swiper_email'].each do |email|
-      Credence::AddSwiperToPet.call(
+      Pets_Tinder::AddSwiperToPet.call(
         email: email, pet_id: pet.id
       )
     end
