@@ -1,0 +1,15 @@
+---
+account:
+  name: 'billy.malherbe'
+  email: billy.malherbe@gmail.com
+  password: '$a$eM^^&N'
+
+account:
+  name: 'edgar'
+  email: edgar@nthu.edu.tw
+  password: 'Hondura$'
+
+account:
+  name: 'Mrs_Edgar'
+  email: mrsedgar@gmail.com
+  password: teamo

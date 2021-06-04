@@ -13,13 +13,13 @@ describe 'Test pet' do
     describe 'Getting list of pets' do
       before do
         @account_data = DATA[:accounts][0]
-        account = Pets_Tinder::Account.create(@account_data)
+        account = PetsTinder::Account.create(@account_data)
         account.add_owned_pet(DATA[:pets][0])
         account.add_owned_pet(DATA[:pets][1])
       end
 
       it 'HAPPY: should get list for authorized account' do
-        auth = Pets_Tinder::AuthenticateAccount.call(
+        auth = PetsTinder::AuthenticateAccount.call(
           username: @account_data['username'],
           password: @account_data['password']
         )
@@ -44,8 +44,8 @@ describe 'Test pet' do
 
     it 'HAPPY: should be able to get details of a single pet' do
       existing_pet = DATA[:pets][1]
-      Pets_Tinder::Pet.create(existing_pet)
-      id = Pets_Tinder::Pet.first.id
+      PetsTinder::Pet.create(existing_pet)
+      id = PetsTinder::Pet.first.id
 
       get "/api/v1/pets/#{id}"
       _(last_response.status).must_equal 200
@@ -62,8 +62,8 @@ describe 'Test pet' do
     end
 
     it 'SECURITY: should prevent basic SQL injection targeting IDs' do
-      Pets_Tinder::Pet.create(name: 'New Pet')
-      Pets_Tinder::Pet.create(name: 'Newer Pet')
+      PetsTinder::Pet.create(name: 'New Pet')
+      PetsTinder::Pet.create(name: 'Newer Pet')
       get 'api/v1/pets/2%20or%20id%3E0'
 
       # deliberately not reporting error -- don't give attacker information
@@ -84,7 +84,7 @@ describe 'Test pet' do
       _(last_response.header['Location'].size).must_be :>, 0
 
       created = JSON.parse(last_response.body)['data']['attributes']
-      pet = Pets_Tinder::Pet.first
+      pet = PetsTinder::Pet.first
 
       _(created['id']).must_equal pet.id
       _(created['petname']).must_equal @pet_data['petname']

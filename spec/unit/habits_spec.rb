@@ -7,16 +7,16 @@ describe 'Test habit' do
     wipe_database
 
     DATA[:pets].each do |pet_data|
-      Pets_Tinder::Pet.create(pet_data)
+      PetsTinder::Pet.create(pet_data)
     end 
   end
 
   it 'HAPPY: should retrieve correct data from database' do
     hab_data = DATA[:habits][1]
-    pet = Pets_Tinder::Pet.first
+    pet = PetsTinder::Pet.first
     new_hab = pet.add_habit(hab_data)
 
-    hab = Pets_Tinder::Habit.find(id: new_hab.id)
+    hab = PetsTinder::Habit.find(id: new_hab.id)
     
     
     _(hab.name).must_equal new_hab.name
@@ -26,7 +26,7 @@ describe 'Test habit' do
 
   it 'SECURITY: should not use deterministic integers' do
     hab_data =  DATA[:habits][1]
-    pet = Pets_Tinder::Pet.first
+    pet = PetsTinder::Pet.first
     new_hab = pet.add_habit(hab_data)
 
     _(new_hab.id.is_a?(Numeric)).must_equal false
@@ -34,7 +34,7 @@ describe 'Test habit' do
 
   it 'SECURITY: should secure sensitive attributes' do
     hab_data =  DATA[:habits][1]
-    pet = Pets_Tinder::Pet.first
+    pet = PetsTinder::Pet.first
     new_hab = pet.add_habit(hab_data)
     stored_hab = app.DB[:habits].first
 

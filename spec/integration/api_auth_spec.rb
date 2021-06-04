@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../spec_helper'
+require_relative './spec_helper'
 
 describe 'Test Authentication Routes' do
   include Rack::Test::Methods
@@ -13,7 +13,7 @@ describe 'Test Authentication Routes' do
   describe 'Account Authentication' do
     before do
       @account_data = DATA[:accounts][1]
-      @account = Pets_Tinder::Account.create(@account_data)
+      @account = PetsTinder::Account.create(@account_data)
     end
 
     it 'HAPPY: should authenticate valid credentials' do

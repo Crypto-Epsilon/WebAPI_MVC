@@ -9,9 +9,9 @@ require 'yaml'
 require_relative 'test_load_all'
 
 def wipe_database
-  Pets_Tinder::Pet.map(&:destroy)
-  Pets_Tinder::Habit.map(&:destroy)
-  Pets_Tinder::Account.map(&:destroy)
+  PetsTinder::Pet.map(&:destroy)
+  PetsTinder::Habit.map(&:destroy)
+  PetsTinder::Account.map(&:destroy)
 end
 
 DATA = {

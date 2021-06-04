@@ -3,6 +3,8 @@
 require 'rake/testtask'
 require './require_app'
 
+ENV['RACK_ENV'] ||= 'development'
+
 task :default => :spec
 
 desc 'Tests API specs only'
@@ -52,7 +54,7 @@ namespace :db do
 
     # Check names
     Sequel.extension :migration
-    @app = Pets_Tinder::Api
+    @app = PetsTinder::Api
   end
 
   task :load_models => :load do
@@ -62,12 +64,12 @@ namespace :db do
   desc 'Run migrations'
   task :migrate => [:load, :print_env] do
     puts 'Migrating database to latest'
-    Sequel::Migrator.run(@app.DB, 'PETS_TINDER/db/migrations')
+    Sequel::Migrator.run(@app.DB, 'app/db/migrations')
   end
 
   desc 'Destroy data in database; maintain tables'
-  task  :delete => :load do
-    Pets_Tinder::Account.dataset.destroy
+  task :delete => :load do
+    PetsTinder::Account.dataset.destroy
   end
 
   desc 'Delete dev or test database file'
@@ -77,14 +79,14 @@ namespace :db do
       return
     end
 
-    db_filename = "PETS_TINDER/db/store/#{Pets_Tinder::Api.environment}.db"
+    db_filename = "app/db/store/#{@app.environment}.db"
     FileUtils.rm(db_filename)
     puts "Deleted #{db_filename}"
   end
 
-  task:reset_seeds => :load_models do
+  task :reset_seeds => :load_models do
     @app.DB[:schema_seeds].delete if @app.DB.tables.include?(:schema_seeds)
-    Pets_Tinder::Account.dataset.destroy
+    PetsTinder::Account.dataset.destroy
   end
 
   desc 'Seeds the development database'
@@ -92,7 +94,7 @@ namespace :db do
     require 'sequel/extensions/seed'
     Sequel::Seed.setup(:development)
     Sequel.extension :seed
-    Sequel::Seeder.apply(@app.DB, 'PETS_TINDER/db/seeds')
+    Sequel::Seeder.apply(@app.DB, 'app/db/seeds')
   end
   desc 'Delete all data and reseed'
   task reseed: [:reset_seeds, :seed]

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../spec_helper'
+require_relative './spec_helper'
 
 describe 'Test Account Handling' do
   include Rack::Test::Methods
@@ -13,7 +13,7 @@ describe 'Test Account Handling' do
   describe 'Account information' do
     it 'HAPPY: should be able to get details of a single account' do
       account_data = DATA[:accounts][1]
-      account = Pets_Tinder::Account.create(account_data)
+      account = PetsTinder::Account.create(account_data)
 
       get "/api/v1/accounts/#{account.username}"
       _(last_response.status).must_equal 200
@@ -37,7 +37,7 @@ describe 'Test Account Handling' do
       _(last_response.header['Location'].size).must_be :>, 0
 
       created = JSON.parse(last_response.body)['data']['attributes']
-      account = Pets_Tinder::Account.first
+      account = PetsTinder::Account.first
 
       _(created['username']).must_equal @account_data['username']
       _(created['email']).must_equal @account_data['email']

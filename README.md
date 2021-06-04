@@ -1,6 +1,6 @@
 # WebAPI_MVC
 
-Pets_Tinder API
+PetsTinder API
 API to store ane retrieve the data of our pets
 
 Routes

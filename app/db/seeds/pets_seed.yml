@@ -1,0 +1,16 @@
+---
+pet:
+  petname: lulu
+  petrace: German
+  birthday: '5/6/2010'
+  description: 'Lulu is the best cat in the world and Bijon is his owner.'
+pet:
+  petname: jean
+  petrace: canin
+  birthday: '5/8/2019'
+  description: 'if you are looking for a good friend so jean is the solution.'
+pet:
+  petname: egi
+  petrace: doberman
+  birthday: '5/6/2009'
+  description: 'for your safety, just choose egi.'

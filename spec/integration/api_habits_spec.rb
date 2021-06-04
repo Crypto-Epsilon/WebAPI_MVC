@@ -9,12 +9,12 @@ describe 'Test Habit Handling' do
     wipe_database
 
     DATA[:pets].each do |pet_data|
-      Pets_Tinder::Pet.create(pet_data)
+      PetsTinder::Pet.create(pet_data)
     end
   end
 
   it 'HAPPY: should be able to get list of all habits' do
-    pet = Pets_Tinder::Pet.first
+    pet = PetsTinder::Pet.first
     DATA[:habits].each do |hab|
       pet.add_habit(hab)
     end
@@ -31,7 +31,7 @@ describe 'Test Habit Handling' do
 
   it 'HAPPY: should be able to get details of a single habit' do
     hab_data = DATA[:habits][1]
-    pet = Pets_Tinder::Pet.first
+    pet = PetsTinder::Pet.first
     hab = pet.add_habit(hab_data)
 
     get "/api/v1/pets/#{pet.id}/habits/#{hab.id}"
@@ -43,7 +43,7 @@ describe 'Test Habit Handling' do
   end
 
   it 'SAD: should return error if unknown habit requested' do
-    pet = Pets_Tinder::Pet.first
+    pet = PetsTinder::Pet.first
     get "/api/v1/pets/#{pet.id}/habits/foobar"
 
     _(last_response.status).must_equal 404
@@ -51,7 +51,7 @@ describe 'Test Habit Handling' do
 
   describe 'Creating habits' do
     before do
-      @pet = Pets_Tinder::Pet.first
+      @pet = PetsTinder::Pet.first
       @hab_data = DATA[:habits][1]
       @req_header = { 'CONTENT_TYPE' => 'application/json' }
     end
@@ -64,7 +64,7 @@ describe 'Test Habit Handling' do
       _(last_response.header['Location'].size).must_be :>, 0
 
       created = JSON.parse(last_response.body)['data']['attributes']
-      hab = Pets_Tinder::Habit.first
+      hab = PetsTinder::Habit.first
 
       _(created['id']).must_equal hab.id
       _(created['name']).must_equal @hab_data['name']

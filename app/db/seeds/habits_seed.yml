@@ -1,0 +1,15 @@
+---
+habit:
+ name: 'hanit'
+ category: bad
+ description: it's a test, this pet loves to sleep
+
+habit:
+ name: bark for everything
+ category: bad
+ description: a dangerous dog
+
+habit:
+  name: friendship
+  category: good
+  description: it's a good pet
