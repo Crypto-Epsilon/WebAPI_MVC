@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-#require_relative './app/require_app'
-require_app
+require_relative './app/require_app'
+# require_app
 
 def app
   PetsTinder::Api
