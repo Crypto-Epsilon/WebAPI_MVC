@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '/app/require_app'
+require_relative '/config/environment'
 # require_app
 
 def app
