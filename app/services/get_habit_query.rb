@@ -25,4 +25,4 @@ module PetsTender
         habit
       end
     end
-  end
+end
