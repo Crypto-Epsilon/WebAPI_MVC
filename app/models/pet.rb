@@ -22,19 +22,31 @@ module PetsTinder
     plugin :whitelist_security
     set_allowed_columns :name, :description
 
-    def to_json(options = {})
-      JSON(
+    def to_h
         {
-            type: 'pet',
-            attributes: {
-              id: id,
-              petname: petname,
-              petrace: petrace,
-              birthday: birthday,
-              description: description
-            }
-        }, options
+          type: 'pet',
+          attributes: {
+            id: id,
+            petname: petname,
+            petrace: petrace,
+            birthday: birthday,
+            description: description
+          }
+        }
+    end
+
+    def full_details
+      to_h.merge(
+        relationships: {
+          owner: owner,
+          swipers: swipers,
+          habits: habits
+        }
       )
+    end
+
+    def to_json(options = {})
+      JSON(to_h, options)
     end
   end
 end
