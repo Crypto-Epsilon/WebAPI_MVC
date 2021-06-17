@@ -18,7 +18,7 @@ module PetsTinder
 
         routing.get do
           habit = GetHabitQuery.call(
-            requestor: @auth_account, habit: @req_habit
+            auth: @auth, habit: @req_habit
           )
 
           { data: habit }.to_json

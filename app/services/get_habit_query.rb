@@ -1,4 +1,4 @@
-module PetsTender
+module PetsTinder
     # Add a collaborator to another owner's existing project
     class GetHabitQuery
       # Error for owner cannot be collaborator
@@ -16,10 +16,10 @@ module PetsTender
       end
   
       # Document for given requestor account
-      def self.call(requestor:, habit:)
+      def self.call(auth:, habit:)
         raise NotFoundError unless habit
   
-        policy = HabitPolicy.new(requestor, document)
+        policy = HabitPolicy.new(auth[:account], document, auth[:scope])
         raise ForbiddenError unless policy.can_edit? || policy.can_delete?
   
         habit

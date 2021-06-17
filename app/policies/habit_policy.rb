@@ -5,6 +5,7 @@ class HabitPolicy
     def initialize(account, habit)
       @account = account
       @habit = habit
+      @auth_scope = auth_scope
     end
   
     def can_view?
@@ -28,6 +29,14 @@ class HabitPolicy
     end
   
     private
+
+    def can_read?
+      @auth_scope ? @auth_scope.can_read?('habits') : false
+    end
+  
+    def can_write?
+      @auth_scope ? @auth_scope.can_write?('habits') : false
+    end
   
     def account_owns_pet?
       @habit.pet.owner == @account
