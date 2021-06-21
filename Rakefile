@@ -102,16 +102,26 @@ end
 
 # We can use this rake to create new keys for dev, test, prod (we can have different ones)
 namespace :newkey do
+  task(:load_libs) {require_app 'lib'}
+
   desc 'Create sample cryptographic key for database'
-  task :db do
+  task :db => :load_libs do
     require_app('lib')
     puts "DB_KEY: #{SecureDB.generate_key}"
   end
 
   desc 'Create sample cryptographic key for tokens and messaging'
-  task :msg do
+  task :msg => :load_libs do
     require_app('lib')
     puts "MSG_KEY: #{AuthToken.generate_key}"
+  end
+
+  desc 'Create sample sign/verify keypair for signed communication'
+  task :signing => :load_libs do
+    keypair = SignedRequest.generate_keypair
+
+    puts "SIGNING_KEY: #{keypair[:signing_key]}"
+    puts " VERIFY_KEY: #{keypair[:verify_key]}"
   end
 end
 
