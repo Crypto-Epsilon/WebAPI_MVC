@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 require 'rack/test'
-require_relative '/app/require_app'
+require_relative '../require_app'
 
 require_app
 
-def app = PetsTinder::Api
+def app 
+   PetsTinder::Api
+end
 
 unless app.environment == :production
   require 'rack/test'
