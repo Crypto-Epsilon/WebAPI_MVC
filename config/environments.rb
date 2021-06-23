@@ -29,9 +29,9 @@ module PetsTinder
       logger.level = Logger::ERROR
     end
 
-    # configure do
-    #   SecureDB.setup(ENV.delete('DB_KEY')) # Load crypto keys
-    #   AuthToken.setup(ENV.delete('MSG_KEY')) # Load crypto keys
-    # end
+    configure do
+      SecureDB.setup(ENV.delete('DB_KEY')) # Load crypto keys
+      AuthToken.setup(ENV.delete('MSG_KEY')) # Load crypto keys
+    end
   end
 end

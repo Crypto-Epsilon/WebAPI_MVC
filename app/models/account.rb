@@ -7,14 +7,14 @@ require_relative './password'
 module PetsTinder
   # Models a registered account
   class Account < Sequel::Model
-    one_to_many :owned_pets, class: :'PetsTinder::Pet', key: :owner_id   
+    one_to_many :owned_pets, class: :'PetsTinder::Pet', key: :owner_id
 
     many_to_many :swipes,
                  class: :'PetsTinder::Pet',
                  join_table: :accounts_pets,
                  left_key: :swiper_id, right_key: :pet_id
 
-    plugin :association_dependencies, 
+    plugin :association_dependencies,
             owned_pets: :destroy,
             swipes: :nullify
 

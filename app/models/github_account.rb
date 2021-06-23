@@ -15,4 +15,4 @@ module PetsTinder
         @gh_account['email']
       end
     end
-  end
+end

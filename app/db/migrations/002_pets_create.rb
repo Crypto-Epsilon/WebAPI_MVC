@@ -11,7 +11,7 @@ Sequel.migration do
       String :petname, null: false
       String :petrace, null: false
       Date :birthday, null: false
-      String :description, null: false, default: ''
+      String :description, null: true, default: ''
 
       DateTime :created_at
       DateTime :updated_at
