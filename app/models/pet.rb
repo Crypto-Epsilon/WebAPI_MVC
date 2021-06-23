@@ -4,6 +4,7 @@ require 'json'
 require 'sequel'
 
 module PetsTinder
+  # Model a pet
   class Pet < Sequel::Model
     many_to_one :owner, class: :'PetsTinder::Account'
 
@@ -20,19 +21,19 @@ module PetsTinder
 
     plugin :timestamps
     plugin :whitelist_security
-    set_allowed_columns :name, :description
+    set_allowed_columns :petname, :petrace, :birthday, :description
 
     def to_h
-        {
-          type: 'pet',
-          attributes: {
-            id: id,
-            petname: petname,
-            petrace: petrace,
-            birthday: birthday,
-            description: description
-          }
+      {
+        type: 'pet',
+        attributes: {
+          id: id,
+          petname: petname,
+          petrace: petrace,
+          birthday: birthday,
+          description: description
         }
+      }
     end
 
     def full_details

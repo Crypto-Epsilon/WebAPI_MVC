@@ -50,7 +50,7 @@ module PetsTinder
             }
           },
           included: {
-            habit: habit
+            pet: pet
           }
         }, options
       )
