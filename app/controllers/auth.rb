@@ -4,7 +4,7 @@ require 'roda'
 require_relative './app'
 
 module PetsTinder
-  # Web controller for Credence API
+  # Web controller for PetsTinder API
   class Api < Roda
     route('auth') do |routing|
       # All requests in this route require signed requests
@@ -31,6 +31,7 @@ module PetsTinder
       end
 
       routing.is 'authenticate' do
+        # POST /api/v1/auth/authenticate
         routing.post do
           auth_account = AuthenticateAccount.call(@request_data)
           { data: auth_account }.to_json
