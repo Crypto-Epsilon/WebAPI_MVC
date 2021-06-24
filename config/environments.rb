@@ -31,7 +31,7 @@ module PetsTinder
 
     configure do
       SecureDB.setup(ENV.delete('DB_KEY')) # Load crypto keys
-      AuthToken.setup(ENV.delete('MSG_KEY')) # Load crypto keys
+      #AuthToken.setup(ENV.delete('MSG_KEY')) # Load crypto keys
     end
   end
 end
