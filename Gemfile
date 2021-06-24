@@ -7,6 +7,7 @@ ruby File.read('.ruby-version').strip
 gem 'json'
 gem 'puma', '~>5.3.1'
 gem 'roda', '~>3'
+gem 'sendgrid-ruby'
 
 # Configuration
 gem 'figaro', '~>1'
