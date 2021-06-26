@@ -1,0 +1,26 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/billy/WebAPI_MVC/spec/test_load_all.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null
+        ]
+      }
+    },
+    "timestamp": 1624716102
+  }
+}
